@@ -1,0 +1,35 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @film %>
+
+<div>
+  <%= link_to "Edit this film", edit_film_path(@film) %> |
+  <%= link_to "Back to films", films_path %>
+
+  <%= button_to "Destroy this film", @film, method: :delete %>
+</div>
+<hr>
+<h2>All comments</h2>
+<% @film.comments.each do |comment| %>
+<div class="alret alret-light">
+  <p><strong><%= comment.username %></strong>: <%= comment.body %></p>
+</div>
+<%end%>
+<hr>
+<h2>Comments</h2>
+<%= form_for([@film, @film.comments.build]) do |f| %>
+  <p>
+    User<br>
+    <%= f.text_area(:body, {:class => 'from-control'}) %>
+  </p>
+  <p>
+    Text comment<br>
+    <%=f.text_area(:body, {:class => 'form-control'}) %>
+    </p>
+      
+    <p>
+    <%= f.submit("Add comment", {:class => 'btn btn-warning'})%>
+    </p>
+    
+    <% end %>
+    
